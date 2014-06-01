@@ -42,14 +42,14 @@
 												<?php if ((isset($_POST['lstDept'])) && ($donnees['REG_NOM']==$_POST['lstDept'])) { ?> selected='selected'<?php } ?> >
 												<?php	echo $donnees['REG_NOM'];?><br/>
 											</option>
-											<?php } ?>
-											<br/>
-											<input type='submit' value='Valider' style="margin-top:8px;" />
+											<?php } ?>	
 									</select>
+										&nbsp; &nbsp; 
+										<input type='submit' class="btn btn-primary btn-sm" value='Valider'  />
 								</div>
 								<br/>
 								<?php 
-								if (isset($_GET['visiteur'])) {	// si bouton suivant ou pr�c�dent s�lectionn�
+								if (isset($_GET['visiteur'])) {	// si bouton suivant ou précédent sélectionné
 										$visiteur=$_GET['visiteur'];
 							
 									if(($visiteur < '1') ){
@@ -64,7 +64,7 @@
 								}
 
 
-								if(isset($_POST['lstDept'])) {	// si s�lectionn� une r�gion 
+								if(isset($_POST['lstDept'])) {	// si sélectionné une région 
 									$ville = $_POST['lstDept'];?>
 									<div>
 										<select name="lstVisiteur" class="form-control" style="max-width:300px;float:left;" >
@@ -80,8 +80,8 @@
 															<?php echo $donnees1['VIS_NOM'];?>
 														</option>
 											<?php }} ?>
-											<br/><input type='submit' value='Valider' style="margin-top:8px;" /><br/><br/>
-										</select>
+											
+										</select>&nbsp; &nbsp; <input type='submit' value='Valider' class="btn btn-primary btn-sm"" /><br/><br/>
 									</div>
 								<?php 
 								} 
@@ -152,10 +152,12 @@
 									<p>
 										<div class="zone">
 										<?php  $visiteur=$visiteur-1;?>
-										<?php  echo "<a href='formVISITEUR.php?visiteur=$visiteur'>";?><input class="zone" type="button" value="Pr&eacute;c&eacute;dent"></input></a>
+										<?php  echo "<a href='formVISITEUR.php?visiteur=$visiteur'>";?>
+												<input class='btn btn-primary btn-sm' type="button" value="Pr&eacute;c&eacute;dent"></input></a>
 										<?php $visiteur=$visiteur+2; ?>
-										<?php  echo "<a href='formVISITEUR.php?visiteur=$visiteur'>";?><input class="zone" type="button" value="Suivant"></input></a>
-										<a href='menuCR.php'><input type='button' value='Fermer' /></a>
+										<?php  echo "<a href='formVISITEUR.php?visiteur=$visiteur'>";?>
+												<input class='btn btn-primary btn-sm' type="button" value="Suivant"></input></a>
+										<a href='menuCR.php'><input class="btn btn-danger btn-sm zone"  type='button' value='Fermer' /></a>
 										</div>
 									</p>
 								</div>						

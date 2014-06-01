@@ -59,8 +59,7 @@
 						</div>
 						<form name="formListeRecherche"  method="post" action="formPRATICIEN.php" >
 							<legend>Choisissez un praticien :</legend>
-									<tr>
-										<td>
+									
 											<select name="lstPrat" class="form-control" style="max-width:300px;float:left;" onSubmit="document.forms.formListeRecherche.submit()">
 												<option>Choisissez un praticien</option>
 													<?php 
@@ -73,12 +72,9 @@
 														} ;
 													?>
 											</select>
-										</td>
-										<td>
-											<input type='submit' value='Valider' style="margin-top:8px;" />
-										</td>
-									</tr>
-							<br><br>
+											&nbsp; &nbsp; 
+								<input type='submit' class="btn btn-primary btn-sm" value='Valider' >
+							<br>
 							<?php
 								if(isset($_GET['praticien'])) {
 									$praticien=$_GET['praticien'];
@@ -163,13 +159,13 @@
 							<?php
 								if (isset($prat2)){
 									echo "<a href='formPRATICIEN.php?praticien=$prat2'>";
-									echo "<input type='button' value='Precedent' /></a>";
+									echo "<input class='btn btn-primary btn-sm' type='button' value='Precedent' /></a>";
 								}
 								if (isset($prat)){
 									echo "<a href='formPRATICIEN.php?praticien=$prat'>";
-									echo "<input type='button' value='Suivant' /></a>";
+									echo "<input  class='btn btn-primary btn-sm'type='button' value='Suivant' /></a>";
 								}
-								echo "<a href='menuCR.php'><input type='button' value='Fermer' /></a>";
+								echo "<a href='menuCR.php'><input class='btn btn-danger btn-sm zone'  type='button' value='Fermer' /></a>";
 							?>
 									</div>
 									</p>

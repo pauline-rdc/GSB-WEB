@@ -54,8 +54,8 @@ while ($donnees3 = $req3-> fetch()){
 										}
 										?></option>
 								</select>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type='submit' class="btn btn-primary btn-sm" value='Valider' style="margin-top:8px;">
+								&nbsp; &nbsp; 
+								<input type='submit' class="btn btn-primary btn-sm" value='Valider' >
 								</td>
 							</div>
 							<br/>
@@ -150,17 +150,15 @@ $quantite = $donnees4['OFF_QTE'];
 							<?php
 	if (isset($rapp2)) {
 		echo "<a href='formRAPPORT_VISITE.php?rapport=$rapp2'>";
-		echo "<input class='zone' type='button' value='Précédent'></input></a>";
+		echo "<input class='btn btn-primary btn-sm' type='button' value='Précédent'></input></a>";
 	}
 	if (isset($rapp)) {
 		echo "<a href='formRAPPORT_VISITE.php?rapport=$rapp'>";
-		echo "<input class='zone' type='button' value='Suivant'></input></a>";
+		echo "<input class='btn btn-primary btn-sm' type='button' value='Suivant'></input></a>";
 
 	}
 							?>
-							<a href='menuCR.php'>
-							<input class="zone" type='button' value='Fermer' />
-							</a>
+							<a href='menuCR.php'><input class="btn btn-danger btn-sm" type='button' value='Fermer' /></a>
 							</div>
 							</p>
 							</div>

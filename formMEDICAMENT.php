@@ -29,8 +29,7 @@
 						</div>
 						<form name="formMEDICAMENT" method="post" action="formMEDICAMENT.php">
 							<?php echo'<legend>Médicament à sélectionner :</legend>';	?>
-								<tr>
-									<td>
+							
 										<select name="lstmnt"  class="form-control" style="max-width:300px;float:left;" >
 											<option>Choisissez un médicament</option>
 											<?php 
@@ -43,11 +42,10 @@
 												} ;
 											?>
 										</select>
-									</td>
-									<td>
-										<input type='submit' value='Valider' style="margin-top:8px;"/>
-									</td>
-								</tr>
+									&nbsp; &nbsp; 
+								<input type='submit' class="btn btn-primary btn-sm" value='Valider' >
+										
+								
 								<br/>
 							
 							<br><br>
@@ -119,14 +117,14 @@
 									<div class="zone">
 										<?php if (isset($mdmt2)){
 											  	echo "<a href='formMEDICAMENT.php?medicament=$mdmt2'>";
-												echo "<input class='zone' type='button' value='Précédent'></input></a>";
+												echo "<input class='btn btn-primary btn-sm' type='button' value='Précédent'></input></a>";
 										} 
 										if (isset($mdmt)){
 											  	echo "<a href='formMEDICAMENT.php?medicament=$mdmt'>";
-												echo "<input class='zone' type='button' value='Suivant'></input></a>";
+												echo "<input class='btn btn-primary btn-sm' type='button' value='Suivant'></input></a>";
 										}
 										?>
-										<a href='menuCR.php'><input class="zone" type='button' value='Fermer' /></a>
+										<a href='menuCR.php'><input class="btn btn-danger btn-sm zone"  type='button' value='Fermer' /></a>
 									</div>
 								</p>
 							</div>

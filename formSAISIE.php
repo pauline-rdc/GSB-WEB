@@ -21,25 +21,25 @@
 				else { formRAPPORT_VISITE.elements[pObjet].disabled=true; }
 			}
 
-			function ajoutLigne( pNumero){//ajoute une ligne de produits/qt�e� la div "lignes"   
+			function ajoutLigne( pNumero){//ajoute une ligne de produits/qtité la div "lignes"   
 				//masque le bouton en cours
 				document.getElementById("but"+pNumero).setAttribute("hidden","true");	
-				pNumero++;										//incr�mente le num�ro de ligne
+				pNumero++;										//incrémente le num�ro de ligne
+			
+				var laDiv=document.getElementById("lignes");	//récupère l'objet DOM qui contient les donn�es
+				//var leParagraphe=document.getElementById("paragraphe");	//récupère l'objet paragraphe qui contient les données
 				
-				var laDiv=document.getElementById("lignes");	//r�cup�re l'objet DOM qui contient les donn�es
-				//var leParagraphe=document.getElementById("paragraphe");	//r�cup�re l'objet paragraphe qui contient les données
-				
-				var div=document.createElement("div");    // on cr�e le paragraphe
-				var paragraphe=document.createElement("p");    // on cr�e le paragraphe
+				var div=document.createElement("div");    // on crée le paragraphe
+				var paragraphe=document.createElement("p");    // on crée le paragraphe
 				//document.getElementById("lignes").appendChild(paragraphe);
 				paragraphe.setAttribute("class","paragraphe");
 				paragraphe.setAttribute("style","float:left;margin:0px;");
 				div.appendChild(paragraphe);                 // ajout du paragraphe
 				laDiv.appendChild(div);                 // ajout de la div
 				
-				var titre = document.createElement("label") ;	//cr�e un label
+				var titre = document.createElement("label") ;	//crée un label
 				paragraphe.appendChild(titre) ;						//l'ajoute à la DIV
-				titre.setAttribute("class","titre") ;			//d�finit les propri�t�s
+				titre.setAttribute("class","titre") ;			//définit les propriétés
 				titre.innerHTML= "   Produit : ";
 				
 				var liste = document.createElement("select");//ajoute une liste pour proposer les produits
@@ -47,7 +47,7 @@
 				liste.setAttribute("name","PRA_ECH"+pNumero) ;
 				liste.setAttribute("class","form-control");
 				liste.setAttribute("style","min-width:300px;max-width:300px;margin:0px;");
-				//remplit la liste avec les valeurs de la premi�re liste construite en PHP à partir de la base
+				//remplit la liste avec les valeurs de la première liste construite en PHP à partir de la base
 				liste.innerHTML=formRAPPORT_VISITE.elements["PRA_ECH1"].innerHTML;		
 				var espace4 = document.createElement("br");
 				div.appendChild(espace4);
@@ -66,7 +66,7 @@
 				var espace2 = document.createElement("br");
 				div.appendChild(espace2) ;				
 				
-				//ajoute une gestion �venementielle en faisant �voluer le num�ro de la ligne
+				//ajoute une gestion évenementielle en faisant évoluer le numéro de la ligne
 				bouton.setAttribute("onClick","ajoutLigne("+ pNumero +");");
 				bouton.setAttribute("type","button");
 				bouton.setAttribute("value","+");
@@ -158,8 +158,9 @@
 								<br/>
 								<label class="titre"></label>
 								<div class="zone">
-									<input type="reset" value="Annuler"></input>
-									<input type="submit" value="Valider"></input>
+									<input type="submit" class="btn btn-primary btn-sm" value="Valider"></input>
+									<input type="reset" class="btn btn-danger btn-sm" value="Annuler"></input>
+									
 								</div>
 								</p>
 							</div>
