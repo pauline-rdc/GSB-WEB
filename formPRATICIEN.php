@@ -73,7 +73,7 @@
 														} ;
 													?>
 											</select>
-										</td>xw<
+										</td>
 										<td>
 											<input type='submit' value='Valider' style="margin-top:8px;" />
 										</td>
