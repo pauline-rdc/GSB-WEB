@@ -31,10 +31,10 @@
 							<h2>Autres visiteurs</h2>
 						</div>
 						<form name="formVISITEUR" method="post" action="formVISITEUR.php">
-							<legend>Choisissez une r&eacute;gion :</legend>
+							<legend>Choisissez une région :</legend>
 								<div>
 									<select name="lstDept" class="form-control" style="max-width:300px;float:left;" >
-										<option>Choisissez une r&eacute;gion</option>
+										<option>Choisissez une région</option>
 										<?php 
 											$req = $bdd->query("SELECT * FROM region order by REG_NOM asc");
 											while ($donnees = $req-> fetch()){?>
@@ -49,22 +49,13 @@
 								</div>
 								<br/>
 								<?php 
-								if (isset($_GET['visiteur'])) {	// si bouton suivant ou précédent sélectionné
+								if (isset($_GET['visiteur'])) {		// si bouton suivant ou précédent sélectionné
 										$visiteur=$_GET['visiteur'];
-							
-									if(($visiteur < '1') ){
-										$visiteur=0;
-									}
-									elseif	($visiteur > '51'){
-										$visiteur=52;
-									}
-									else{
 										$req = $bdd->query("SELECT * FROM visiteur WHERE COMPTEUR ='".$visiteur."'"); 
-									}
 								}
+								
 
-
-								if(isset($_POST['lstDept'])) {	// si sélectionné une région 
+								if(isset($_POST['lstDept'])) {		// si sélectionné une région 
 									$ville = $_POST['lstDept'];?>
 									<div>
 										<select name="lstVisiteur" class="form-control" style="max-width:300px;float:left;" >
@@ -86,7 +77,7 @@
 								<?php 
 								} 
 								
-								if(isset($_POST['lstVisiteur'])) {	// si selectionn� un visiteur selon les r�gions
+								if(isset($_POST['lstVisiteur'])) {	// si selectionné un visiteur selon les régions
 									$visiteur = $_POST['lstVisiteur'];
 									$req = $bdd->query("SELECT * FROM visiteur WHERE VIS_NOM ='".$visiteur."'"); 
 									
@@ -95,6 +86,7 @@
 								if ((isset($visiteur)) ){
 									//affichage des donnes si visiteur existe
 									$donnees = $req-> fetch();
+									$compt=$donnees['VIS_MATRICULE'];
 								?>
 								<div>
 									<fieldset>
@@ -148,16 +140,50 @@
 										
 									</fieldset>
 								</div>
+								
+								<?php 
+									$reqBtn = $bdd->query("SELECT * FROM travailler ORDER BY REG_CODE ASC");
+									
+									$valide=false;
+									while ($donneesBtn = $reqBtn -> fetch()) {
+										if ($valide == true) {
+											$reqVis = $bdd->query("SELECT * FROM visiteur WHERE VIS_MATRICULE='".$donneesBtn['VIS_MATRICULE']."'");
+												$donneesVis = $reqVis-> fetch();
+												$visit2 = $donneesVis['compteur'];
+											$valide = false;
+										}
+										if ($donneesBtn['VIS_MATRICULE'] ==$compt) {
+											$valide = true;
+										}
+									}
+									$reqBtn2 = $bdd->query("SELECT * FROM travailler ORDER BY REG_CODE DESC");
+									while ($donneesBtn2 = $reqBtn2 -> fetch()) {
+										if ($valide == true) {
+											$reqVis2 = $bdd->query("SELECT * FROM visiteur WHERE VIS_MATRICULE='".$donneesBtn2['VIS_MATRICULE']."'");
+												$donneesVis2 = $reqVis2-> fetch();
+												$visit = $donneesVis2['compteur'];
+											$valide = false;
+										}
+										if ($donneesBtn2['VIS_MATRICULE'] == $compt) {
+											$valide = true;
+										}
+									}
+							?>
+								
 								<div class="piedForm">
 									<p>
 										<div class="zone">
-										<?php  $visiteur=$visiteur-1;?>
-										<?php  echo "<a href='formVISITEUR.php?visiteur=$visiteur'>";?>
-												<input class='btn btn-primary btn-sm' type="button" value="Pr&eacute;c&eacute;dent"></input></a>
-										<?php $visiteur=$visiteur+2; ?>
-										<?php  echo "<a href='formVISITEUR.php?visiteur=$visiteur'>";?>
-												<input class='btn btn-primary btn-sm' type="button" value="Suivant"></input></a>
-										<a href='menuCR.php'><input class="btn btn-danger btn-sm zone"  type='button' value='Fermer' /></a>
+											<?php
+												if (isset($visit2)){
+													echo "<a href='formVISITEUR.php?visiteur=$visit2'>";
+													echo "<input class='btn btn-primary btn-sm' type='button' value='Precedent' /></a>";
+												}
+												if (isset($visit)){
+													echo "<a href='formVISITEUR.php?visiteur=$visit'>";
+													echo "<input  class='btn btn-primary btn-sm'type='button' value='Suivant' /></a>";
+												}
+												echo "<a href='menuCR.php'><input class='btn btn-danger btn-sm zone'  type='button' value='Fermer' /></a>";
+											?>
 										</div>
 									</p>
 								</div>						
