@@ -14,12 +14,16 @@
 		<link href="boostrap.css" rel="stylesheet" type="text/css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<script language="javascript">
-			function selectionne(pValeur, pSelection,  pObjet) {
-				//active l'objet pObjet du formulaire si la valeur sélectionnée (pSelection) est égale à la valeur attendue (pValeur)
-				if (pSelection==pValeur) 
-					{ formRAPPORT_VISITE.elements[pObjet].disabled=false; }
-				else { formRAPPORT_VISITE.elements[pObjet].disabled=true; }
-			}
+			  function checkbox(pSelection,  pObjet, pObjet2) {
+			       if (formRAPPORT_VISITE.elements[pSelection].checked) {
+					 	formRAPPORT_VISITE.elements[pObjet].disabled=false;
+					 	formRAPPORT_VISITE.elements[pObjet2].disabled=true; 
+					}
+					else { 
+						formRAPPORT_VISITE.elements[pObjet].disabled=true; 
+						formRAPPORT_VISITE.elements[pObjet2].disabled=false; 
+					}
+			    }
 
 			function ajoutLigne( pNumero){//ajoute une ligne de produits/qtité la div "lignes"   
 				//masque le bouton en cours
@@ -87,6 +91,9 @@
 						
 			$req_produit = $bdd->query("SELECT * FROM medicament order by MED_NOMCOMMERCIAL asc");
 			$donnees_produit = $req_produit-> fetch();
+			
+			$req_motif = $bdd->query("SELECT * FROM motif order by MOT_LIBELLE asc");
+			
 		?>
 		<div class="container">
 			<div class="row">
@@ -118,14 +125,23 @@
 									<?php } ?>
 								</select>
 								<br/>
-								<label>MOTIF :</label><br/><select name="RAP_MOTIF" class="form-control" style="max-width:300px;float:left;" 
-										onClick="selectionne('AUT',this.value,'RAP_MOTIFAUTRE');" >
-										<option value="Périodicité">Périodicité</option>
-										<option value="Actualisation">Actualisation</option>
-										<option value="Relance">Relance</option>
-										<option value="Sollicitation praticien">Sollicitation praticien</option>
-										<option value="AUT">Autre</option>
-									</select><input type="text" name="RAP_MOTIFAUTRE" class="form-control" style="max-width:300px;" disabled="disabled" />
+								
+								
+								<label>MOTIF :</label><select  name="RAP_MOTIF" class="form-control" style="max-width:300px;" >
+								<?php while ($donnees_motif = $req_motif-> fetch()){ ?>
+									<option  value="<?php echo $donnees_motif['MOT_LIBELLE']; ?>">
+										<?php echo $donnees_motif['MOT_LIBELLE']; ?>
+									</option>
+									<?php } ?>
+								</select>
+								
+								
+								<div class="checkbox">
+								    <label>
+								      <input type="checkbox" id="checkb" name="AutreMotif"  onClick="checkbox('AutreMotif','RAP_MOTIFAUTRE', 'RAP_MOTIF');" >Autre motif :
+								    </label>
+								  </div>
+								<input id="motif" type="text"  name="RAP_MOTIFAUTRE" class="form-control" style="max-width:300px;" disabled="disabled" />
 								<br/>
 								<label>BILAN :</label><textarea rows="5" cols="50" name="RAP_BILAN" class="form-control" style="min-width:60%;"></textarea><br/><br/>
 								

@@ -4,26 +4,22 @@
     $vis_matri_session = $_SESSION['id'];
     $nom_session = $_SESSION['nom'];
 
-	//echo "<pre>";print_r($_POST);echo "</pre>";
-	// Insertion
-		$bdd = new PDO('mysql:host=localhost;dbname=gsb_ppe2et4', 'root', '');
-		//mysql_query("SET NAMES 'latin1'"); 
-		
+
+		include('include/connexionBase.php');
+				
 		$rechercherNumPraticien = $bdd->query('SELECT PRA_NUM AS NUM_PRATICIEN FROM praticien WHERE PRA_NOM="'.$_POST["PRA_NUM"].'"');
 		$rechercherNumPraticien2 = $rechercherNumPraticien-> fetch();
 		
 		//Pour le motif
-		if($_POST['RAP_MOTIF']=="AUT"){
-			
-			$rapMotif = $_POST['RAP_MOTIFAUTRE'];
+		if ($_POST['AutreMotif']==true){
+			$rapMotif= $_POST['RAP_MOTIFAUTRE'];
 			$envoie_donnee = $bdd->prepare('INSERT INTO motif (MOT_LIBELLE) VALUES ("'. $_POST['RAP_MOTIFAUTRE'].'")');
 			$envoie_donnee -> execute();
 			$resultat = $envoie_donnee->fetch();
-			
-			
-		}else if (isset($_POST['RAP_MOTIF'])){
+		}else{
 			$rapMotif=$_POST['RAP_MOTIF'];
 		}
+
 		//Pour les produits
 		$nbPost = count($_POST);
 		$tableauPost = array();
@@ -47,7 +43,7 @@
 		else {	//Insertion des données
 			$envoie_donnees = $bdd->prepare('INSERT INTO rapport_visite(VIS_MATRICULE,RAP_NUM,PRA_NUM,RAP_DATE,RAP_BILAN,RAP_MOTIF) 
 				VALUES("'.$vis_matri_session.'","'.$_POST['RAP_NUM'].'",'.$rechercherNumPraticien2[0].',"'.$_POST['RAP_DATEVISITE'].
-				'","'.$_POST['RAP_BILAN'].'","'.utf8_decode($rapMotif).'")');
+				'","'.$_POST['RAP_BILAN'].'","'.$rapMotif.'")');
 			$envoie_donnees -> execute();
 			$resultat = $envoie_donnees->fetch();
 			
