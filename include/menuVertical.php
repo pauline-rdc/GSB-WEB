@@ -12,19 +12,21 @@
 						$recherche = $recherche-> fetch();
 						echo "<h2>".$recherche['VIS_NOM'] . " " . $recherche['VIS_PRENOM'] ."</h2>";
 					?>
-					<h3>Visiteur m&eacute;dical</h3>
+					<h3> <?php echo $_SESSION['role']?></h3>
 				</p>
                 <div class="list-group">
                     <a class="list-group-item active">Comptes-Rendus</a>
 					<a class="list-group-item" href="formSAISIE.php" >Nouveaux</a>
-					<a class="list-group-item" href="formRAPPORT_VISITE.php">Consulter</a>
+					<a class="list-group-item" href="formRAPPORT_VISITE.php">Ces comptes-rendus</a>
                 </div>
                 <div class="list-group">
                     <a class="list-group-item active" >Consulter</a>
 					<a class="list-group-item" href="menuCR.php" >Accueil</a>
-					<a class="list-group-item" href="formMEDICAMENT.php" >M&eacute;dicaments</a>
+					<a class="list-group-item" href="formMEDICAMENT.php" >Médicaments</a>
 					<a class="list-group-item" href="formPRATICIEN.php" >Praticiens</a>
-                    <a class="list-group-item" href="formVISITEUR.php" >Autres visiteurs</a>
+					<?php if ($_SESSION['role']<>"Visiteur"){
+                    	echo "<a class='list-group-item' href='formVISITEUR.php'>Autres visiteurs</a>";
+                    }	?>
                     <a class="list-group-item" href="deconnexion.php">Quitter</a>
                 </div>
             </div>

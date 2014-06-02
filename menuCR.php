@@ -19,7 +19,7 @@
 					<?php      
 						echo "<h2>".$recherche['VIS_NOM'] . " " . $recherche['VIS_PRENOM'] ."</h2>";
 					?>
-					<h3>Visiteur médical</h3>
+					<h3> <?php echo $_SESSION['role']?></h3>
 				</p>
                 <div class="list-group">
                     <a class="list-group-item active">Accueil</a>
@@ -27,7 +27,9 @@
 					<a class="list-group-item" href="formRAPPORT_VISITE.php">Rapports</a>
                     <a class="list-group-item" href="formMEDICAMENT.php">Médicaments</a>
                     <a class="list-group-item" href="formPRATICIEN.php">Praticiens</a>
-                    <a class="list-group-item" href="formVISITEUR.php">Autres visiteurs</a>
+                    <?php if ($_SESSION['role']<>"Visiteur"){
+                    	echo "<a class='list-group-item' href='formVISITEUR.php'>Autres visiteurs</a>";
+                    }	?>
                     <a class="list-group-item" href="deconnexion.php">Quitter</a>
                 </div>
             </div>

@@ -19,12 +19,12 @@ session_start();
 							<h1 class="text-center">Identification</h1>
 						</div>
 						<div class="modal-body">
-							<form class="form col-md-12 center-block" action="verifConnection.php" Method="post">
+							<form class="form col-md-12 center-block" action="verifConnect.php" Method="post">
 								<div class="form-group">
 									<input type="text" class="form-control input-lg" placeholder="Andre..." name="nom" required>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control input-lg" placeholder="jj-mmm-aaaa" name="mdp" required>
+									<input type="password" class="form-control input-lg" placeholder="jj-mmm-aaaa (date embauche)" name="mdp" required>
 								</div>
 								
 								<div class="form-group">
