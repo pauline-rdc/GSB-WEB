@@ -7,6 +7,10 @@
 	 include ('include/top.php');
     $vis_matri_session = $_SESSION['id'];
     $nom_session = $_SESSION['nom']; 
+	
+	if ($_SESSION['role']=="Visiteur"){
+		header('location:menuCR.php');	
+	}
 ?>
 <html>
 	<head>
@@ -51,10 +55,9 @@
 								<?php 
 								if (isset($_GET['visiteur'])) {		// si bouton suivant ou précédent sélectionné
 										$visiteur=$_GET['visiteur'];
-										$req = $bdd->query("SELECT * FROM visiteur WHERE COMPTEUR ='".$visiteur."'"); 
+										$req = $bdd->query("SELECT * FROM visiteur WHERE VIS_MATRICULE ='".$visiteur."'"); 
 								}
 								
-
 								if(isset($_POST['lstDept'])) {		// si sélectionné une région 
 									$ville = $_POST['lstDept'];?>
 									<div>
@@ -149,7 +152,7 @@
 										if ($valide == true) {
 											$reqVis = $bdd->query("SELECT * FROM visiteur WHERE VIS_MATRICULE='".$donneesBtn['VIS_MATRICULE']."'");
 												$donneesVis = $reqVis-> fetch();
-												$visit2 = $donneesVis['compteur'];
+												$visit2 = $donneesVis['VIS_MATRICULE'];
 											$valide = false;
 										}
 										if ($donneesBtn['VIS_MATRICULE'] ==$compt) {
@@ -161,7 +164,7 @@
 										if ($valide == true) {
 											$reqVis2 = $bdd->query("SELECT * FROM visiteur WHERE VIS_MATRICULE='".$donneesBtn2['VIS_MATRICULE']."'");
 												$donneesVis2 = $reqVis2-> fetch();
-												$visit = $donneesVis2['compteur'];
+												$visit = $donneesVis2['VIS_MATRICULE'];
 											$valide = false;
 										}
 										if ($donneesBtn2['VIS_MATRICULE'] == $compt) {

@@ -18,6 +18,11 @@
                     <a class="list-group-item active">Comptes-Rendus</a>
 					<a class="list-group-item" href="formSAISIE.php" >Nouveaux</a>
 					<a class="list-group-item" href="formRAPPORT_VISITE.php">Ces comptes-rendus</a>
+					<?php if ($_SESSION['role']=="Délégué"){
+                    		echo "<a class='list-group-item' href='formRAPPORT_VISITE2.php'>Autres comptes-rendus</a>";
+                    	}else if($_SESSION['role']=="Responsable"){
+                    		echo "<a class='list-group-item' href='formRAPPORT_VISITE3.php'>Autres comptes-rendus</a>";
+                    } ?>
                 </div>
                 <div class="list-group">
                     <a class="list-group-item active" >Consulter</a>
@@ -31,5 +36,4 @@
                 </div>
             </div>
         </div>
-
     </div>
