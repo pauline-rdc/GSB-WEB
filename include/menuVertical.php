@@ -17,7 +17,7 @@
                 <div class="list-group">
                     <a class="list-group-item active">Comptes-Rendus</a>
 					<a class="list-group-item" href="formSAISIE.php" >Nouveaux</a>
-					<a class="list-group-item" href="formRAPPORT_VISITE.php">Ces comptes-rendus</a>
+					<a class="list-group-item" href="formRAPPORT_VISITE.php">Mes comptes-rendus</a>
 					<?php if ($_SESSION['role']=="Délégué"){
                     		echo "<a class='list-group-item' href='formRAPPORT_VISITE2.php'>Autres comptes-rendus</a>";
                     	}else if($_SESSION['role']=="Responsable"){
@@ -29,6 +29,7 @@
 					<a class="list-group-item" href="menuCR.php" >Accueil</a>
 					<a class="list-group-item" href="formMEDICAMENT.php" >Médicaments</a>
 					<a class="list-group-item" href="formPRATICIEN.php" >Praticiens</a>
+                    <a class="list-group-item" href="formRESERVATION.php">Réservation</a>
 					<?php if ($_SESSION['role']<>"Visiteur"){
                     	echo "<a class='list-group-item' href='formVISITEUR.php'>Autres visiteurs</a>";
                     }	?>

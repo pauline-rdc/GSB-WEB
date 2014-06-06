@@ -27,6 +27,7 @@
 					<a class="list-group-item" href="formRAPPORT_VISITE.php">Rapports</a>
                     <a class="list-group-item" href="formMEDICAMENT.php">Médicaments</a>
                     <a class="list-group-item" href="formPRATICIEN.php">Praticiens</a>
+                    <a class="list-group-item" href="formRESERVATION.php">Réservation</a>
                     <?php if ($_SESSION['role']<>"Visiteur"){
                     	echo "<a class='list-group-item' href='formVISITEUR.php'>Autres visiteurs</a>";
                     }	?>
